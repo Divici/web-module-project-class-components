@@ -16,28 +16,43 @@ const toDoList = [
 ];
 
 class App extends React.Component {
-  constructor(){
+  constructor() {
     super();
     this.state = {
       toDoList: toDoList
     };
+  }
 
   //Add toDo to list
+  handleAddTodo = (taskToDo) => {
+
+    const newTask = {
+      task: taskToDo,
+      id: Date.now(),
+      completed: false
+    };
+
+    this.setState({
+      ...this.state,
+      toDoList: [...this.state.toDoList, newTask]
+    });
+  }
 
   //Clear completed toDo's
 
   //Toggle Completed
     
-  }
+  
   render() {
     return (
       <div>
         <h1>Todo List: MVP</h1>
         <TodoList toDoList={this.state.toDoList} />
-        <TodoForm />
+        <TodoForm handleAddTodo={this.handleAddTodo}/>
       </div>
     );
   }
+  
 }
 
 export default App;
