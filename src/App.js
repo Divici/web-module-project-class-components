@@ -39,6 +39,14 @@ class App extends React.Component {
   }
 
   //Clear completed toDo's
+  handleClearCompleted = () => {
+    this.setState({
+      ...this.state,
+      toDoList: this.state.toDoList.filter(task => {
+        return !task.completed;
+      })
+    })
+  }
 
   //Toggle Completed
   handleToggleTask = (selectedTask) => {
@@ -64,7 +72,7 @@ class App extends React.Component {
       <div>
         <h1>Todo List: MVP</h1>
         <TodoList toDoList={this.state.toDoList} handleToggleTask={this.handleToggleTask} />
-        <TodoForm handleAddTodo={this.handleAddTodo}/>
+        <TodoForm handleAddTodo={this.handleAddTodo} handleClearCompleted={this.handleClearCompleted}/>
       </div>
     );
   }
