@@ -41,18 +41,34 @@ class App extends React.Component {
   //Clear completed toDo's
 
   //Toggle Completed
+  handleToggleTask = (selectedTask) => {
+    this.setState({
+      ...this.state,
+      toDoList: this.state.toDoList.map(task => {
+        if (task.id === selectedTask.id){
+          return({
+            ...task,
+            completed: !task.completed
+          })
+        }
+        else {
+          return task;
+        }
+      })
+    });
+  }
     
   
   render() {
     return (
       <div>
         <h1>Todo List: MVP</h1>
-        <TodoList toDoList={this.state.toDoList} />
+        <TodoList toDoList={this.state.toDoList} handleToggleTask={this.handleToggleTask} />
         <TodoForm handleAddTodo={this.handleAddTodo}/>
       </div>
     );
   }
-  
+
 }
 
 export default App;
