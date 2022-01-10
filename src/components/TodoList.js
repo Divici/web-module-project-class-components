@@ -1,7 +1,7 @@
 import React from "react";
 
 const TodoList = props => {
-console.log(props.toDoList);
+
     return (
         <div>
             {props.toDoList.map(item => (
